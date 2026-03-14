@@ -5,8 +5,9 @@ import TransactionForm from './components/TransactionForm';
 import TransactionList from './components/TransactionList';
 import BalanceSummary from './components/BalanceSummary';
 import PivotTable from './components/PivotTable';
+import MembersPanel from './components/MembersPanel';
 
-type Tab = 'transactions' | 'balances' | 'pivot';
+type Tab = 'transactions' | 'balances' | 'pivot' | 'members';
 
 const App: React.FC = () => {
   const { group, clearGroup } = useGroup();
@@ -55,6 +56,7 @@ const App: React.FC = () => {
     { id: 'transactions', label: 'Expenses', shortLabel: 'Expenses' },
     { id: 'balances', label: 'Balances', shortLabel: 'Balances' },
     { id: 'pivot', label: 'Matrix', shortLabel: 'Matrix' },
+    { id: 'members', label: 'Members', shortLabel: 'Members' },
   ];
 
   return (
@@ -116,6 +118,7 @@ const App: React.FC = () => {
         {activeTab === 'transactions' && <TransactionList />}
         {activeTab === 'balances' && <BalanceSummary />}
         {activeTab === 'pivot' && <PivotTable />}
+        {activeTab === 'members' && <MembersPanel />}
       </main>
 
       {/* Floating Action Button — visible on transactions tab */}

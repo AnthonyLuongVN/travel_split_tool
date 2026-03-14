@@ -10,7 +10,8 @@
       "Bash(wc:*)",
       "Bash(vercel:*)",
       "Bash(lsof -ti :5173)",
-      "Bash(npm audit fix)"
+      "Bash(npm audit fix)",
+      "Bash(lsof -iTCP -sTCP:LISTEN -P)"
     ]
   }
 }
