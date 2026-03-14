@@ -9,7 +9,8 @@
       "Bash(npm run preview:*)",
       "Bash(wc:*)",
       "Bash(vercel:*)",
-      "Bash(lsof -ti :5173)"
+      "Bash(lsof -ti :5173)",
+      "Bash(npm audit fix)"
     ]
   }
 }

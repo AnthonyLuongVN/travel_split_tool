@@ -23,6 +23,14 @@ const App: React.FC = () => {
     }
   };
 
+  const csvEscape = (value: string | number | undefined): string => {
+    const str = String(value ?? '');
+    // Neutralize formula injection: prefix dangerous chars with a tab
+    const safe = /^[=+\-@]/.test(str) ? `\t${str}` : str;
+    // Wrap in quotes and escape internal quotes per RFC 4180
+    return `"${safe.replace(/"/g, '""')}"`;
+  };
+
   const exportToCSV = () => {
     let csv = 'Date,Description,Category,Payer,Amount,Split With,Split Amount\n';
 
@@ -30,7 +38,7 @@ const App: React.FC = () => {
       const payer = group.members.find(m => m.id === transaction.payerId);
       transaction.splits.forEach(split => {
         const member = group.members.find(m => m.id === split.memberId);
-        csv += `${transaction.date},${transaction.description},${transaction.category},${payer?.name},${transaction.amount},${member?.name},${split.amount}\n`;
+        csv += `${csvEscape(transaction.date)},${csvEscape(transaction.description)},${csvEscape(transaction.category)},${csvEscape(payer?.name)},${csvEscape(transaction.amount)},${csvEscape(member?.name)},${csvEscape(split.amount)}\n`;
       });
     });
 

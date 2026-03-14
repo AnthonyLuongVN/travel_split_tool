@@ -64,6 +64,14 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onClose, editTransact
       alert('Please enter a valid amount');
       return;
     }
+    if (numAmount > 999_999_999) {
+      alert('Amount is too large (max 999,999,999)');
+      return;
+    }
+    if (!/^\d+(\.\d{1,2})?$/.test(amount.trim())) {
+      alert('Amount cannot have more than 2 decimal places');
+      return;
+    }
 
     if (!description.trim()) {
       alert('Please enter a description');
